@@ -1,0 +1,17 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  margin-top: 48px;
+  z-index: 1;
+}
+
+.container {
+  display: flex;
+}
+
+
+.content {
+  flex: 1;
+}
+
+

@@ -1,0 +1,53 @@
+<div class="login-container">
+  <form  class="login-form" (ngSubmit)="onSubmit()"
+        #f="ngForm"
+        name="form"
+         novalidate
+  >
+    <nz-form-item>
+      <nz-form-control nzErrorTip="Please input your username!">
+        <nz-input-group nzPrefixIcon="user">
+          <input
+            type="text"
+            class="form-control"
+            name="username"
+            [(ngModel)]="form.username"
+            required
+            #username="ngModel"
+            nz-input  placeholder="Username"/>
+        </nz-input-group>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-control nzErrorTip="Please input your Password!">
+        <nz-input-group nzPrefixIcon="lock">
+          <input
+            type="password"
+            class="form-control"
+            name="password"
+            [(ngModel)]="form.password"
+            required
+            minlength="6"
+            #password="ngModel"
+            nz-input  placeholder="Password"/>
+        </nz-input-group>
+      </nz-form-control>
+    </nz-form-item>
+    <div nz-row class="login-form-margin">
+      <div nz-col [nzSpan]="12">
+        <label nz-checkbox formControlName="remember">
+          <span>Remember me</span>
+        </label>
+      </div>
+      <div nz-col [nzSpan]="12">
+        <a routerLink="/next" class="login-form-forgot">Forgot password</a>
+      </div>
+    </div>
+    <button class="login-form-button login-form-margin" nz-button nzType="primary"
+            [nzLoading]="isLoadingTwo"><i nz-icon nzType="poweroff"></i>Log in
+    </button>
+    Or <a routerLink="/register"> register now! </a>
+  </form>
+</div>
+
+

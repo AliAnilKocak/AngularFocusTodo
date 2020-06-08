@@ -1,0 +1,25 @@
+<div  class="parent">
+  <div class="top-nav">
+    <div class="leadings">
+      <h2><a nz-button nzType="link" class="action-link" routerLink="login" href="">FOCUS TODO</a></h2>
+      <button *ngIf="isRouteAuth()" nz-button nz-dropdown [nzDropdownMenu]="menu"><i class="add-circle" nz-icon nzTheme="fill"
+                                                               nzType="plus-circle"></i>New Item<i
+        nz-icon nzType="down"></i></button>
+      <nz-dropdown-menu #menu="nzDropdownMenu">
+        <ul *ngFor="let action of actions" nz-menu>
+          <li nz-menu-item>
+            <a>{{action.name}}</a>
+          </li>
+        </ul>
+      </nz-dropdown-menu>
+    </div>
+
+    <div class="actions">
+      <a *ngIf="!isRouteAuth()" nz-button nzType="link" class="action-link" routerLink="login" href="">Login </a>
+      <a *ngIf="!isRouteAuth()" nz-button nzType="link" class="action-link" routerLink="register" href="">Register </a>
+      <a *ngIf="isRouteAuth()" nz-button nzType="link" class="action-link" routerLink="register" href="">Settings </a>
+      <a *ngIf="isRouteAuth()" (click)="logout()" nz-button nzType="link">Logout</a>
+    </div>
+  </div>
+</div>
+

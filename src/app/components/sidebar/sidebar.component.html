@@ -1,0 +1,29 @@
+<div *ngIf="isRouteAuth()" class="sidebar">
+  <div class="nav-items">
+    <nz-collapse>
+      <nz-collapse-panel
+        *ngFor="let panel of panels"
+        [nzHeader]="panel.name"
+        [nzActive]="panel.active"
+        [nzDisabled]="panel.disabled"
+        [ngStyle]="panel.customStyle"
+      >
+        <!--        <div *ngFor="let action of actions; let i = index" [class.active]="selectedIndex === i" (click)="setIndex(i)"-->
+        <!--             routerLink="/{{action.slug}}" class="nav-item active">-->
+        <!--          <i nz-icon nzType="{{action.icon}}" nzTheme="outline"></i>-->
+        <!--          {{action.name}}-->
+        <!--        </div>-->
+        <h1> MainComponent</h1>
+        <div *ngFor="let action of actions; let i = index" [class.active]="selectedIndex === i"
+             (click)="setIndex(i,action.id)"
+             class="nav-item active">
+          <i nz-icon nzType="{{action.icon}}" nzTheme="outline"></i>
+          {{action.name}}
+        </div>
+
+      </nz-collapse-panel>
+    </nz-collapse>
+
+  </div>
+
+</div>
