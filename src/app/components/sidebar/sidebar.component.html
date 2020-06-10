@@ -13,7 +13,6 @@
         <!--          <i nz-icon nzType="{{action.icon}}" nzTheme="outline"></i>-->
         <!--          {{action.name}}-->
         <!--        </div>-->
-        <h1> MainComponent</h1>
         <div *ngFor="let action of actions; let i = index" [class.active]="selectedIndex === i"
              (click)="setIndex(i,action.id)"
              class="nav-item active">

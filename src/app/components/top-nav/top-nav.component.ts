@@ -3,6 +3,7 @@ import {Router} from '@angular/router';
 import {ActionService} from '../../_services/action.service';
 import {Action} from '../../model/Action';
 import {TokenStorageService} from '../../_services/token-storage.service';
+import {TodoService} from '../../_services/todo.service';
 
 @Component({
   selector: 'app-top-nav',
@@ -12,6 +13,10 @@ import {TokenStorageService} from '../../_services/token-storage.service';
 export class TopNavComponent implements OnInit {
 
   actions: Action[];
+  visible = false;
+  drawerPlacement = 'left';
+  currentActionId;
+
 
   change(value: boolean): void {
     console.log(value);
@@ -19,7 +24,18 @@ export class TopNavComponent implements OnInit {
 
   constructor(private router: Router,
               private actionService: ActionService,
-              private tokenStorageService: TokenStorageService) {
+              private tokenStorageService: TokenStorageService,
+              private todoService: TodoService) {
+  }
+
+  open(actionId: number): void {
+    console.log(actionId);
+    this.currentActionId = actionId;
+    this.visible = true;
+  }
+
+  close(): void {
+    this.visible = false;
   }
 
   isRouteAuth(): boolean {
@@ -37,4 +53,10 @@ export class TopNavComponent implements OnInit {
     this.router.navigate(['/login']);
   }
 
+  save(name, description) {
+    this.todoService.saveTodo(name, description, this.currentActionId).subscribe(item => {
+      console.log(item);
+    });
+    console.log(name + ' ' + description);
+  }
 }

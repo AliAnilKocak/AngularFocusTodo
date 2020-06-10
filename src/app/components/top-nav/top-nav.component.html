@@ -1,14 +1,58 @@
-<div  class="parent">
+<nz-drawer
+  [nzBodyStyle]="{ height: 'calc(100% - 55px)', overflow: 'auto', 'padding-bottom': '53px' }"
+  [nzMaskClosable]="true"
+  [nzWidth]="480"
+  [nzVisible]="visible"
+  [nzPlacement]="drawerPlacement"
+  nzTitle="Create"
+  (nzOnClose)="close()"
+>
+  <form nz-form>
+    <div nz-row nzGutter="24">
+      <div nz-col nzSpan="24">
+        <nz-form-item>
+          <nz-form-label>Name</nz-form-label>
+          <nz-form-control>
+            <input #name nz-input placeholder="please enter user name" />
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+    <div nz-row nzGutter="24">
+      <div nz-col nzSpan="24">
+        <nz-form-item>
+          <nz-form-label>Description</nz-form-label>
+          <nz-form-control>
+                <textarea
+                  #description
+                  nz-input
+                  placeholder="please enter url description"
+                  [nzAutosize]="{ minRows: 4, maxRows: 4 }"
+                ></textarea>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+  </form>
+  <div class="footer">
+    <button type="button" (click)="close()" class="ant-btn" style="margin-right: 8px;"><span>Cancel</span></button>
+    <button type="button" (click)="save(name.value,description.value)" class="ant-btn ant-btn-primary"><span>Save</span></button>
+  </div>
+</nz-drawer>
+
+
+<div class="parent">
   <div class="top-nav">
     <div class="leadings">
       <h2><a nz-button nzType="link" class="action-link" routerLink="login" href="">FOCUS TODO</a></h2>
-      <button *ngIf="isRouteAuth()" nz-button nz-dropdown [nzDropdownMenu]="menu"><i class="add-circle" nz-icon nzTheme="fill"
-                                                               nzType="plus-circle"></i>New Item<i
+      <button *ngIf="isRouteAuth()" nz-button nz-dropdown [nzDropdownMenu]="menu"><i class="add-circle" nz-icon
+                                                                                     nzTheme="fill"
+                                                                                     nzType="plus-circle"></i>New Item<i
         nz-icon nzType="down"></i></button>
       <nz-dropdown-menu #menu="nzDropdownMenu">
         <ul *ngFor="let action of actions" nz-menu>
           <li nz-menu-item>
-            <a>{{action.name}}</a>
+            <a (click)="open(action.id)">{{action.name}}</a>
           </li>
         </ul>
       </nz-dropdown-menu>
