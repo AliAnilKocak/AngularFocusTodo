@@ -10,9 +10,10 @@ import {SharedService} from '../../_services/shared.service';
   styleUrls: ['./todolist.component.css']
 })
 export class TodolistComponent implements OnInit {
-
+  title;
+  description;
   onMain: any;
-
+  currentSelectedTodo: Todo;
   todos: Todo[];
   filled = true;
   checked = true;
@@ -48,9 +49,20 @@ export class TodolistComponent implements OnInit {
     this.filled = !this.filled;
   }
 
-  open(): void {
+  open(todo: Todo): void {
+    this.title = todo.title;
+    this.description = todo.description;
+    this.currentSelectedTodo = todo;
     this.visible = true;
   }
+
+  save(name, description) {
+    console.log(name + ' ' + description);
+    this.todoService.updateTodo(name, description, this.currentSelectedTodo.id).subscribe(item => {
+      // console.log(item);
+    });
+  }
+
 
   close(): void {
     this.visible = false;

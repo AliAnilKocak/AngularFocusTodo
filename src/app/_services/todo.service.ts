@@ -25,6 +25,14 @@ export class TodoService {
     });
   }
 
+  updateTodo(title: string, description: string, id: number): Observable<Todo[]> {
+    return this.http.put<Todo[]>(API_URL + 'todos', {
+      id,
+      title,
+      description
+    });
+  }
+
   gettTodoByActionId(id): Observable<Todo[]> {
     return this.http.get<Todo[]>(API_URL + 'todosbyaction/' + id);
   }

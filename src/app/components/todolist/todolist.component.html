@@ -13,7 +13,7 @@
         <nz-form-item>
           <nz-form-label>Name</nz-form-label>
           <nz-form-control>
-            <input nz-input placeholder="please enter user name" />
+            <input name="title" [(ngModel)]="title" nz-input placeholder="please enter user name" />
           </nz-form-control>
         </nz-form-item>
       </div>
@@ -24,6 +24,8 @@
           <nz-form-label>Description</nz-form-label>
           <nz-form-control>
                 <textarea
+                  name="desciption"
+                  [(ngModel)]="description"
                   nz-input
                   placeholder="please enter url description"
                   [nzAutosize]="{ minRows: 4, maxRows: 4 }"
@@ -35,7 +37,7 @@
   </form>
   <div class="footer">
     <button type="button" (click)="close()" class="ant-btn" style="margin-right: 8px;"><span>Cancel</span></button>
-    <button type="button" (click)="close()" class="ant-btn ant-btn-primary"><span>Save</span></button>
+    <button type="button" (click)="save(title,description)" class="ant-btn ant-btn-primary"><span>Save</span></button>
   </div>
 </nz-drawer>
 
@@ -46,7 +48,7 @@
 <!--  </div>-->
   <div cdkDropList (cdkDropListDropped)="onDrop($event)">
     <div class="box" *ngFor="let todo of todos; let i = index" cdkDrag>
-      <div class="todo-item"  (click)="open()" >
+      <div class="todo-item"  (click)="open(todo)" >
         <i class="drag-icon"  nz-icon nzType="more" nzTheme="outline"></i>
         <i  class="star-icon" (click)="changeStarIconType()" [class.active]="filled"  nz-icon nzType="star" nzTheme="{{filled ? 'fill':'outline'}}"></i>
         <label nz-checkbox [(ngModel)]="checked"></label>
