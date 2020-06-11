@@ -3,6 +3,7 @@ import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
 import {TodoService} from '../../_services/todo.service';
 import {Todo} from '../../model/Todo';
 import {SharedService} from '../../_services/shared.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-todolist',
@@ -20,7 +21,7 @@ export class TodolistComponent implements OnInit {
   visible = false;
   drawerPlacement = 'left';
 
-  constructor(private todoService: TodoService, private ss: SharedService) {
+  constructor(private todoService: TodoService, private ss: SharedService, private router: Router) {
     this.onMain = 1;
     this.ss = ss;
   }

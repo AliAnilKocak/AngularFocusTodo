@@ -11,14 +11,18 @@ import {SharedService} from '../../_services/shared.service';
 })
 export class SidebarComponent implements OnInit {
 
-  constructor(private router: Router, private actionService: ActionService, private ss: SharedService) {
-    this.ss = ss;
+  constructor(private router: Router, private actionService: ActionService, private sharedService: SharedService) {
+    this.sharedService = sharedService;
+    this.actionService.getAllActions().subscribe(actions => {
+      // console.log(actions);
+      console.log('Init triggered');
+      this.selectedIndex = actions.length;
+      this.actions = actions;
+    });
   }
 
   actions: Action[];
-
   selectedIndex: number;
-
   panels = [
     {
       active: true,
@@ -29,7 +33,7 @@ export class SidebarComponent implements OnInit {
   ];
 
   changeName(id) {
-    this.ss.change(id);
+    this.sharedService.change(id);
   }
 
   setIndex(index: number, id: any) {
@@ -43,7 +47,8 @@ export class SidebarComponent implements OnInit {
 
   ngOnInit(): void {
     this.actionService.getAllActions().subscribe(actions => {
-      console.log(actions);
+      // console.log(actions);
+      console.log('Init triggered');
       this.selectedIndex = actions.length;
       this.actions = actions;
     });
