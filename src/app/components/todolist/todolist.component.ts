@@ -17,7 +17,7 @@ export class TodolistComponent implements OnInit {
   currentSelectedTodo: Todo;
   todos: Todo[];
   filled = true;
-  checked = true;
+  checked = false;
   visible = false;
   drawerPlacement = 'left';
 
@@ -25,6 +25,7 @@ export class TodolistComponent implements OnInit {
     this.onMain = 1;
     this.ss = ss;
   }
+
 
   ngOnInit(): void {
     this.todoService.getAllTodos().subscribe(todos => {
@@ -61,6 +62,13 @@ export class TodolistComponent implements OnInit {
     console.log(name + ' ' + description);
     this.todoService.updateTodo(name, description, this.currentSelectedTodo.id).subscribe(item => {
       // console.log(item);
+    });
+  }
+
+  toggleSaveTodo(name, description, id, isCompleted: boolean) {
+    console.log(id);
+    this.todoService.updateTodoToggle(name, description, id, !isCompleted).subscribe(item => {
+      console.log(item);
     });
   }
 

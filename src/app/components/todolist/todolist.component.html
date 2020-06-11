@@ -51,10 +51,9 @@
       <div class="todo-item"  (click)="open(todo)" >
         <i class="drag-icon"  nz-icon nzType="more" nzTheme="outline"></i>
         <i  class="star-icon" (click)="changeStarIconType()" [class.active]="filled"  nz-icon nzType="star" nzTheme="{{filled ? 'fill':'outline'}}"></i>
-        <label nz-checkbox [(ngModel)]="checked"></label>
+        <label (ngModelChange)="toggleSaveTodo(todo.title, todo.description, todo.id, todo.completed)"  nz-checkbox [(ngModel)]="todo.completed"></label>
         <div class="todo-title" >{{todo.title}}</div>
-
-
+        <div class="todo-title" >  ID: {{todo.id}}</div>
       </div>
       <div class="divider"></div>
     </div>

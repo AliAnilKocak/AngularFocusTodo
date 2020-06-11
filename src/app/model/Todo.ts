@@ -9,6 +9,7 @@ export interface Todo {
     energy: string;
     dueDate: Date;
     action_id: number;
+    completed: boolean;
     action: Action;
   }
 
