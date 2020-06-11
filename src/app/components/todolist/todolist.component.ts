@@ -72,6 +72,13 @@ export class TodolistComponent implements OnInit {
     });
   }
 
+  favoriteSaveTodo(name, description, id, isFavorite: boolean, isCompleted: boolean) {
+    console.log(isCompleted);
+    this.todoService.favoriteTodoUpdate(name, description, id, !isFavorite, isCompleted).subscribe(item => {
+      console.log(item);
+    });
+  }
+
 
   close(): void {
     this.visible = false;

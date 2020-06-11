@@ -4,7 +4,7 @@ export interface Todo {
     id: number;
     title: string;
     description: string;
-    is_favorite: number;
+    favorite: boolean;
     time: string;
     energy: string;
     dueDate: Date;

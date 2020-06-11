@@ -48,12 +48,11 @@
 <!--  </div>-->
   <div cdkDropList (cdkDropListDropped)="onDrop($event)">
     <div class="box" *ngFor="let todo of todos; let i = index" cdkDrag>
-      <div class="todo-item"  (click)="open(todo)" >
+      <div class="todo-item"   >
         <i class="drag-icon"  nz-icon nzType="more" nzTheme="outline"></i>
-        <i  class="star-icon" (click)="changeStarIconType()" [class.active]="filled"  nz-icon nzType="star" nzTheme="{{filled ? 'fill':'outline'}}"></i>
+        <i class="star-icon" (click)="favoriteSaveTodo(todo.title, todo.description, todo.id, todo.favorite,todo.completed)" [class.active]="todo.favorite"  nz-icon nzType="star" nzTheme="{{todo.favorite ? 'fill':'outline'}}"></i>
         <label (ngModelChange)="toggleSaveTodo(todo.title, todo.description, todo.id, todo.completed)"  nz-checkbox [(ngModel)]="todo.completed"></label>
-        <div class="todo-title" >{{todo.title}}</div>
-        <div class="todo-title" >  ID: {{todo.id}}</div>
+        <div (click)="open(todo)" class="todo-title" >{{todo.title}}</div>
       </div>
       <div class="divider"></div>
     </div>
