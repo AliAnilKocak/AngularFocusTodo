@@ -17,6 +17,10 @@ export class TodoService {
     return this.http.get<Todo[]>(API_URL + 'todos');
   }
 
+  getFavoriteTodos(): Observable<Todo[]> {
+    return this.http.get<Todo[]>(API_URL + 'favoritetodos');
+  }
+
   saveTodo(title: string, description: string, actionId: number): Observable<Todo[]> {
     return this.http.post<Todo[]>(API_URL + 'todos', {
       title,

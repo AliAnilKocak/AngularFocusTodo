@@ -35,16 +35,29 @@ export class TodolistComponent implements OnInit {
     this.ss.getEmittedValue()
       .subscribe(item => {
         this.currentActionId = item;
-        this.todoService.gettTodoByActionId(item).subscribe(todos => {
-          this.todos = todos;
-          console.log(todos);
-        });
+        if (item === 0) {
+          this.todoService.getAllTodos().subscribe(todos => {
+            this.todos = todos;
+            console.log(todos);
+          });
+        } else if (item === -1) {
+          this.todoService.getFavoriteTodos().subscribe(todos => {
+            this.todos = todos;
+            console.log(todos);
+          });
+        } else {
+          this.todoService.gettTodoByActionId(item).subscribe(todos => {
+            this.todos = todos;
+            console.log(todos);
+          });
+        }
         return this.onMain = item;
       });
   }
 
   onDrop(event: CdkDragDrop<string[]>) {
     moveItemInArray(this.todos, event.previousIndex, event.currentIndex);
+    console.log(event.container);
   }
 
   changeStarIconType() {

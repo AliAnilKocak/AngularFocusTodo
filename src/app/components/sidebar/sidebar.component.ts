@@ -16,13 +16,14 @@ export class SidebarComponent implements OnInit {
     this.actionService.getAllActions().subscribe(actions => {
       // console.log(actions);
       console.log('Init triggered');
-      this.selectedIndex = actions.length;
+      this.selectedIndex = 0;
       this.actions = actions;
     });
   }
 
   actions: Action[];
-  selectedIndex: number;
+  selectedIndex = 0;
+  isFavoriteSelected = false;
   panels = [
     {
       active: true,
@@ -37,6 +38,7 @@ export class SidebarComponent implements OnInit {
   }
 
   setIndex(index: number, id: any) {
+    this.isFavoriteSelected = false;
     this.selectedIndex = index;
     this.changeName(id);
   }
@@ -45,14 +47,20 @@ export class SidebarComponent implements OnInit {
     return !(this.router.url === '/login' || this.router.url === '/register');
   }
 
+
   ngOnInit(): void {
     this.actionService.getAllActions().subscribe(actions => {
       // console.log(actions);
       console.log('Init triggered');
-      this.selectedIndex = actions.length;
+      this.selectedIndex = 0;
       this.actions = actions;
+      let obj: Action = {id: 0, name: 'All', slug: 'align-left', icon: 'menu'};
+      this.actions.splice(0, 0, obj);
     });
   }
 
-
+  getFavorites() {
+    this.isFavoriteSelected = !this.isFavoriteSelected;
+    this.changeName(-1);
+  }
 }
