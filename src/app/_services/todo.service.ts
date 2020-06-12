@@ -33,12 +33,13 @@ export class TodoService {
     });
   }
 
-  updateTodoToggle(title: string, description: string, id: number, completed): Observable<Todo[]> {
+  updateTodoToggle(title: string, description: string, id: number, completed, favorite): Observable<Todo[]> {
     return this.http.put<Todo[]>(API_URL + 'todos', {
       id,
       title,
       description,
-      completed
+      completed,
+      favorite
     });
   }
 

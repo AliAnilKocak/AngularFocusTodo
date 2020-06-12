@@ -20,6 +20,7 @@ export class TodolistComponent implements OnInit {
   checked = false;
   visible = false;
   drawerPlacement = 'left';
+  currentActionId = 1;
 
   constructor(private todoService: TodoService, private ss: SharedService, private router: Router) {
     this.onMain = 1;
@@ -35,6 +36,7 @@ export class TodolistComponent implements OnInit {
 
     this.ss.getEmittedValue()
       .subscribe(item => {
+        this.currentActionId = item;
         this.todoService.gettTodoByActionId(item).subscribe(todos => {
           this.todos = todos;
           console.log(todos);
@@ -65,9 +67,9 @@ export class TodolistComponent implements OnInit {
     });
   }
 
-  toggleSaveTodo(name, description, id, isCompleted: boolean) {
+  toggleSaveTodo(name, description, id, isCompleted: boolean, isFavorite: boolean) {
     console.log(id);
-    this.todoService.updateTodoToggle(name, description, id, !isCompleted).subscribe(item => {
+    this.todoService.updateTodoToggle(name, description, id, !isCompleted, !isFavorite).subscribe(item => {
       console.log(item);
     });
   }
@@ -76,6 +78,10 @@ export class TodolistComponent implements OnInit {
     console.log(isCompleted);
     this.todoService.favoriteTodoUpdate(name, description, id, !isFavorite, isCompleted).subscribe(item => {
       console.log(item);
+      this.todoService.gettTodoByActionId(this.currentActionId).subscribe(todos => {
+        this.todos = todos;
+        console.log(todos);
+      });
     });
   }
 
