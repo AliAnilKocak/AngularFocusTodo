@@ -11,22 +11,20 @@ import {Router} from '@angular/router';
   styleUrls: ['./todolist.component.css']
 })
 export class TodolistComponent implements OnInit {
+  currentActionId = 1;
   title;
   description;
   onMain: any;
   currentSelectedTodo: Todo;
   todos: Todo[];
   filled = true;
-  checked = false;
   visible = false;
   drawerPlacement = 'left';
-  currentActionId = 1;
 
   constructor(private todoService: TodoService, private ss: SharedService, private router: Router) {
     this.onMain = 1;
     this.ss = ss;
   }
-
 
   ngOnInit(): void {
     this.todoService.getAllTodos().subscribe(todos => {
@@ -63,14 +61,12 @@ export class TodolistComponent implements OnInit {
   save(name, description) {
     console.log(name + ' ' + description);
     this.todoService.updateTodo(name, description, this.currentSelectedTodo.id).subscribe(item => {
-      // console.log(item);
     });
   }
 
   toggleSaveTodo(name, description, id, isCompleted: boolean, isFavorite: boolean) {
     console.log(id);
-    this.todoService.updateTodoToggle(name, description, id, !isCompleted, !isFavorite).subscribe(item => {
-      console.log(item);
+    this.todoService.updateTodoToggle(name, description, id, !isCompleted, isFavorite).subscribe(item => {
     });
   }
 
@@ -80,11 +76,9 @@ export class TodolistComponent implements OnInit {
       console.log(item);
       this.todoService.gettTodoByActionId(this.currentActionId).subscribe(todos => {
         this.todos = todos;
-        console.log(todos);
       });
     });
   }
-
 
   close(): void {
     this.visible = false;
