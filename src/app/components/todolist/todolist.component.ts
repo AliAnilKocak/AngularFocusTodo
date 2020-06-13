@@ -74,7 +74,12 @@ export class TodolistComponent implements OnInit {
   save(name, description) {
     console.log(name + ' ' + description);
     this.todoService.updateTodo(name, description, this.currentSelectedTodo.id).subscribe(item => {
+      this.todoService.getAllTodos().subscribe(todos => {
+        this.todos = todos;
+        console.log(todos);
+      });
     });
+    this.visible = false;
   }
 
   toggleSaveTodo(name, description, id, isCompleted: boolean, isFavorite: boolean) {

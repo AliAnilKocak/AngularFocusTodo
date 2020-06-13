@@ -17,6 +17,72 @@ export class TopNavComponent implements OnInit {
   drawerPlacement = 'left';
   currentActionId;
 
+  currentSelectedTime = 0;
+
+  times: { title: string, value: number }[] = [
+    {
+      title: '5 minutes',
+      value: 5
+    },
+    {
+      title: '10 minutes',
+      value: 10
+    },
+    {
+      title: '15 minutes',
+      value: 15
+    },
+    {
+      title: '25 minutes',
+      value: 25
+    },
+    {
+      title: '30 minutes',
+      value: 30
+    },
+    {
+      title: '45 minutes',
+      value: 45
+    },
+    {
+      title: '1 hour',
+      value: 60
+    },
+    {
+      title: '2 hour',
+      value: 120
+    },
+    {
+      title: '3 hour',
+      value: 180
+    },
+    {
+      title: '4 hour',
+      value: 240
+    },
+    {
+      title: '6 hour',
+      value: 360
+    },
+    {
+      title: '8 hour',
+      value: 480
+    },
+    {
+      title: '12 hour',
+      value: 720
+    },
+    {
+      title: 'None',
+      value: 0
+    },
+  ];
+
+
+  provinceChange(value: string): void {
+    this.currentSelectedTime = Number(value);
+    console.log(this.currentSelectedTime);
+  }
 
   change(value: boolean): void {
     console.log(value);
@@ -55,8 +121,7 @@ export class TopNavComponent implements OnInit {
 
   save(name, description) {
     this.todoService.saveTodo(name, description, this.currentActionId).subscribe(item => {
-      console.log(item);
     });
-    console.log(name + ' ' + description);
+    this.visible = false;
   }
 }
