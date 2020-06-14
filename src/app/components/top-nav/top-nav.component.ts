@@ -4,6 +4,7 @@ import {ActionService} from '../../_services/action.service';
 import {Action} from '../../model/Action';
 import {TokenStorageService} from '../../_services/token-storage.service';
 import {TodoService} from '../../_services/todo.service';
+import {en_US, NzI18nService, zh_CN} from 'ng-zorro-antd';
 
 @Component({
   selector: 'app-top-nav',
@@ -16,8 +17,9 @@ export class TopNavComponent implements OnInit {
   visible = false;
   drawerPlacement = 'left';
   currentActionId;
-
+  date = null;
   currentSelectedTime = 0;
+  isEnglish = false;
 
   times: { title: string, value: number }[] = [
     {
@@ -78,20 +80,31 @@ export class TopNavComponent implements OnInit {
     },
   ];
 
+  constructor(private router: Router,
+              private actionService: ActionService,
+              private tokenStorageService: TokenStorageService,
+              private todoService: TodoService,
+              private i18n: NzI18nService
+  ) {
+    this.i18n.setLocale(this.isEnglish ? zh_CN : en_US);
+    this.isEnglish = !this.isEnglish;
+  }
 
   provinceChange(value: string): void {
     this.currentSelectedTime = Number(value);
     console.log(this.currentSelectedTime);
   }
 
+  onChange(result: Date): void {
+    console.log('onChange: ', result);
+  }
+
   change(value: boolean): void {
     console.log(value);
   }
 
-  constructor(private router: Router,
-              private actionService: ActionService,
-              private tokenStorageService: TokenStorageService,
-              private todoService: TodoService) {
+  onChangeDate(result: Date): void {
+    console.log('onChange: ', result);
   }
 
   open(actionId: number): void {
@@ -124,4 +137,5 @@ export class TopNavComponent implements OnInit {
     });
     this.visible = false;
   }
+
 }

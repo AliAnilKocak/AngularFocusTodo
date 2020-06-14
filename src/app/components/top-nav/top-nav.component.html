@@ -50,15 +50,9 @@
       </div>
       <div nz-col nzSpan="8">
         <nz-form-item>
-          <nz-form-label>Type</nz-form-label>
+          <nz-form-label>DateTime</nz-form-label>
           <nz-form-control>
-            <nz-select
-              name="energy"
-              [(ngModel)]="currentSelectedTime"
-              (ngModelChange)="provinceChange($event)"
-              nzPlaceHolder="Please choose the type">
-              <nz-option *ngFor="let time of times" nzLabel="{{time.title}}" nzValue="{{time.value}}"></nz-option>
-            </nz-select>
+            <nz-date-picker name="time" [(ngModel)]="date" (ngModelChange)="onChangeDate($event)"></nz-date-picker>
           </nz-form-control>
         </nz-form-item>
       </div>
