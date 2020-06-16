@@ -98,6 +98,8 @@ export class TodolistComponent implements OnInit {
     });
   }
 
+
+
   close(): void {
     this.visible = false;
   }

@@ -13,7 +13,9 @@
         <nz-form-item>
           <nz-form-label>Name</nz-form-label>
           <nz-form-control>
-            <input #name nz-input placeholder="please enter user name" />
+            <input
+              #title
+              name="title" [(ngModel)]="titleText" nz-input placeholder="please enter user name"/>
           </nz-form-control>
         </nz-form-item>
       </div>
@@ -24,7 +26,9 @@
           <nz-form-label>Description</nz-form-label>
           <nz-form-control>
                 <textarea
-                  #description
+                  #desc
+                  name="description"
+                  [(ngModel)]="descriptionText"
                   nz-input
                   placeholder="please enter url description"
                   [nzAutosize]="{ minRows: 4, maxRows: 4 }"
@@ -35,24 +39,25 @@
     </div>
     <div nz-row nzGutter="24">
       <div nz-col nzSpan="8">
-          <nz-form-item>
-            <nz-form-label>Type</nz-form-label>
-            <nz-form-control>
-              <nz-select
-                name="time"
-                [(ngModel)]="currentSelectedTime"
-                (ngModelChange)="provinceChange($event)"
-                nzPlaceHolder="Please choose the type">
-                <nz-option *ngFor="let time of times" nzLabel="{{time.title}}" nzValue="{{time.value}}"></nz-option>
-              </nz-select>
-            </nz-form-control>
-          </nz-form-item>
+        <nz-form-item>
+          <nz-form-label>Type</nz-form-label>
+          <nz-form-control>
+            <nz-select
+              name="time"
+              [(ngModel)]="currentSelectedTime"
+              (ngModelChange)="provinceChange($event)"
+              nzPlaceHolder="Please choose the type">
+              <nz-option *ngFor="let time of times" nzLabel="{{time.title}}" nzValue="{{time.value}}"></nz-option>
+            </nz-select>
+          </nz-form-control>
+        </nz-form-item>
       </div>
       <div nz-col nzSpan="8">
         <nz-form-item>
           <nz-form-label>DateTime</nz-form-label>
           <nz-form-control>
-            <nz-date-picker name="time" [(ngModel)]="date" (ngModelChange)="onChangeDate($event)"></nz-date-picker>
+            <nz-date-picker name="due_date" [(ngModel)]="currentDate"
+                            (ngModelChange)="onChangeDate($event)"></nz-date-picker>
           </nz-form-control>
         </nz-form-item>
       </div>
@@ -61,11 +66,12 @@
           <nz-form-label>Type</nz-form-label>
           <nz-form-control>
             <nz-select
-              name="due_date"
-              [(ngModel)]="currentSelectedTime"
+              name="energy"
+              [(ngModel)]="currentEnergy"
               (ngModelChange)="provinceChange($event)"
               nzPlaceHolder="Please choose the type">
-              <nz-option *ngFor="let time of times" nzLabel="{{time.title}}" nzValue="{{time.value}}"></nz-option>
+              <nz-option *ngFor="let energy of energies" nzLabel="{{energy.title}}"
+                         nzValue="{{energy.value}}"></nz-option>
             </nz-select>
           </nz-form-control>
         </nz-form-item>
@@ -75,7 +81,9 @@
   </form>
   <div class="footer">
     <button type="button" (click)="close()" class="ant-btn" style="margin-right: 8px;"><span>Cancel</span></button>
-    <button type="button" (click)="save(name.value,description.value)" class="ant-btn ant-btn-primary"><span>Save</span></button>
+    <button type="button" (click)="loglama(title.value, desc.value)" class="ant-btn" style="margin-right: 8px;"><span>Loglama</span></button>
+    <button type="button" (click)="createAllFields(title.value, desc.value, this.currentSelectedTime, this.currentDate, this.currentEnergy)" class="ant-btn ant-btn-primary"><span>Save</span>
+    </button>
   </div>
 </nz-drawer>
 

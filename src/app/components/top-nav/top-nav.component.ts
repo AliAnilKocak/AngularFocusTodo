@@ -5,6 +5,8 @@ import {Action} from '../../model/Action';
 import {TokenStorageService} from '../../_services/token-storage.service';
 import {TodoService} from '../../_services/todo.service';
 import {en_US, NzI18nService, zh_CN} from 'ng-zorro-antd';
+import {Todo} from '../../model/Todo';
+import {DatePipe, formatDate} from '@angular/common';
 
 @Component({
   selector: 'app-top-nav',
@@ -17,82 +19,123 @@ export class TopNavComponent implements OnInit {
   visible = false;
   drawerPlacement = 'left';
   currentActionId;
-  date = null;
+  currentDate = null;
+  currentTodo: Todo;
   currentSelectedTime = 0;
+  currentEnergy = 'None';
   isEnglish = false;
 
-  times: { title: string, value: number }[] = [
+  energies: { title: string, value: string }[] = [
+    {
+      title: 'None',
+      value: '0'
+    },
+    {
+      title: 'Low',
+      value: '1'
+    },
+    {
+      title: 'Middle',
+      value: '2'
+    },
+    {
+      title: 'High',
+      value: '3'
+    },
+  ];
+  times: { title: string, value: string }[] = [
     {
       title: '5 minutes',
-      value: 5
+      value: '5'
     },
     {
       title: '10 minutes',
-      value: 10
+      value: '10'
     },
     {
       title: '15 minutes',
-      value: 15
+      value: '15'
     },
     {
       title: '25 minutes',
-      value: 25
+      value: '25'
     },
     {
       title: '30 minutes',
-      value: 30
+      value: '30'
     },
     {
       title: '45 minutes',
-      value: 45
+      value: '45'
     },
     {
       title: '1 hour',
-      value: 60
+      value: '60'
     },
     {
       title: '2 hour',
-      value: 120
+      value: '120'
     },
     {
       title: '3 hour',
-      value: 180
+      value: '180'
     },
     {
       title: '4 hour',
-      value: 240
+      value: '240'
     },
     {
       title: '6 hour',
-      value: 360
+      value: '360'
     },
     {
       title: '8 hour',
-      value: 480
+      value: '480'
     },
     {
       title: '12 hour',
-      value: 720
+      value: '720'
     },
     {
       title: 'None',
-      value: 0
+      value: '0'
     },
   ];
+  descriptionText: any;
+  titleText: any;
 
   constructor(private router: Router,
               private actionService: ActionService,
               private tokenStorageService: TokenStorageService,
               private todoService: TodoService,
-              private i18n: NzI18nService
+              private i18n: NzI18nService,
   ) {
     this.i18n.setLocale(this.isEnglish ? zh_CN : en_US);
     this.isEnglish = !this.isEnglish;
   }
 
+  createAllFields(title, description, time, energy, dueDate) {
+    console.log(title);
+    console.log(description);
+    console.log(time);
+    console.log(energy);
+    console.log(dueDate);
+    console.log(this.currentActionId);
+
+    this.todoService.createTodoForAllFields(title, description, time, energy, dueDate, this.currentActionId).subscribe(item => {
+      console.log(item);
+    });
+  }
+
+
   provinceChange(value: string): void {
     this.currentSelectedTime = Number(value);
     console.log(this.currentSelectedTime);
+  }
+
+  EnergyChange(value: string): void {
+    this.currentEnergy = value;
+    console.log(this.currentEnergy);
   }
 
   onChange(result: Date): void {
@@ -104,7 +147,7 @@ export class TopNavComponent implements OnInit {
   }
 
   onChangeDate(result: Date): void {
-    console.log('onChange: ', result);
+    this.currentDate = formatDate(this.currentDate, 'yyyy-MM-dd', 'en_US');
   }
 
   open(actionId: number): void {
@@ -138,4 +181,10 @@ export class TopNavComponent implements OnInit {
     this.visible = false;
   }
 
+
+  loglama(title: string, desc: string) {
+    console.log(title);
+    console.log(' ');
+    console.log(desc);
+  }
 }
