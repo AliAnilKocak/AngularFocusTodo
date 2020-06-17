@@ -128,7 +128,7 @@ export class TopNavComponent implements OnInit {
   }
 
 
-  provinceChange(value: string): void {
+  timeChange(value: string): void {
     this.currentSelectedTime = Number(value);
     console.log(this.currentSelectedTime);
   }

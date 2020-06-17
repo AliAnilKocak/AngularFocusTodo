@@ -45,7 +45,7 @@
             <nz-select
               name="time"
               [(ngModel)]="currentSelectedTime"
-              (ngModelChange)="provinceChange($event)"
+              (ngModelChange)="timeChange($event)"
               nzPlaceHolder="Please choose the type">
               <nz-option *ngFor="let time of times" nzLabel="{{time.title}}" nzValue="{{time.value}}"></nz-option>
             </nz-select>
@@ -68,7 +68,7 @@
             <nz-select
               name="energy"
               [(ngModel)]="currentEnergy"
-              (ngModelChange)="provinceChange($event)"
+              (ngModelChange)="EnergyChange($event)"
               nzPlaceHolder="Please choose the type">
               <nz-option *ngFor="let energy of energies" nzLabel="{{energy.title}}"
                          nzValue="{{energy.value}}"></nz-option>
@@ -82,7 +82,7 @@
   <div class="footer">
     <button type="button" (click)="close()" class="ant-btn" style="margin-right: 8px;"><span>Cancel</span></button>
     <button type="button" (click)="loglama(title.value, desc.value)" class="ant-btn" style="margin-right: 8px;"><span>Loglama</span></button>
-    <button type="button" (click)="createAllFields(title.value, desc.value, this.currentSelectedTime, this.currentDate, this.currentEnergy)" class="ant-btn ant-btn-primary"><span>Save</span>
+    <button type="button" (click)="createAllFields(title.value, desc.value, this.currentSelectedTime,  this.currentEnergy,this.currentDate)" class="ant-btn ant-btn-primary"><span>Save</span>
     </button>
   </div>
 </nz-drawer>

@@ -4,6 +4,7 @@ import {TodoService} from '../../_services/todo.service';
 import {Todo} from '../../model/Todo';
 import {SharedService} from '../../_services/shared.service';
 import {Router} from '@angular/router';
+import {formatDate} from '@angular/common';
 
 @Component({
   selector: 'app-todolist',
@@ -17,9 +18,91 @@ export class TodolistComponent implements OnInit {
   onMain: any;
   currentSelectedTodo: Todo;
   todos: Todo[];
+  currentDate = null;
+  currentTodo: Todo;
+  currentSelectedTime = 0;
+  currentEnergy = 'None';
   filled = true;
   visible = false;
   drawerPlacement = 'left';
+
+  energies: { title: string, value: string }[] = [
+    {
+      title: 'None',
+      value: '0'
+    },
+    {
+      title: 'Low',
+      value: '1'
+    },
+    {
+      title: 'Middle',
+      value: '2'
+    },
+    {
+      title: 'High',
+      value: '3'
+    },
+  ];
+  times: { title: string, value: string }[] = [
+    {
+      title: '5 minutes',
+      value: '5'
+    },
+    {
+      title: '10 minutes',
+      value: '10'
+    },
+    {
+      title: '15 minutes',
+      value: '15'
+    },
+    {
+      title: '25 minutes',
+      value: '25'
+    },
+    {
+      title: '30 minutes',
+      value: '30'
+    },
+    {
+      title: '45 minutes',
+      value: '45'
+    },
+    {
+      title: '1 hour',
+      value: '60'
+    },
+    {
+      title: '2 hour',
+      value: '120'
+    },
+    {
+      title: '3 hour',
+      value: '180'
+    },
+    {
+      title: '4 hour',
+      value: '240'
+    },
+    {
+      title: '6 hour',
+      value: '360'
+    },
+    {
+      title: '8 hour',
+      value: '480'
+    },
+    {
+      title: '12 hour',
+      value: '720'
+    },
+    {
+      title: 'None',
+      value: '0'
+    },
+  ];
+
 
   constructor(private todoService: TodoService, private ss: SharedService, private router: Router) {
     this.onMain = 1;
@@ -60,14 +143,40 @@ export class TodolistComponent implements OnInit {
     console.log(event.container);
   }
 
-  changeStarIconType() {
-    this.filled = !this.filled;
+  provinceChange(value: string): void {
+    this.currentSelectedTime = Number(value);
+    console.log(this.currentSelectedTime);
   }
+
+  EnergyChange(value: string): void {
+    this.currentEnergy = value;
+    console.log(this.currentEnergy);
+  }
+
+  onChange(result: Date): void {
+    console.log('onChange: ', result);
+  }
+
+  change(value: boolean): void {
+    console.log(value);
+  }
+
+  onChangeDate(result: Date): void {
+    this.currentDate = formatDate(this.currentDate, 'yyyy-MM-dd', 'en_US');
+  }
+
+
 
   open(todo: Todo): void {
     this.title = todo.title;
     this.description = todo.description;
+    this.currentSelectedTime = todo.time;
+    this.currentDate = todo.dueDate;
+    this.currentEnergy = todo.energy;
     this.currentSelectedTodo = todo;
+
+    console.log(this.currentSelectedTime);
+
     this.visible = true;
   }
 
