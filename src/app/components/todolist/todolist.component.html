@@ -77,7 +77,8 @@
   </form>
   <div class="footer">
     <button type="button" (click)="close()" class="ant-btn" style="margin-right: 8px;"><span>Cancel</span></button>
-    <button type="button" (click)="save(title,description)" class="ant-btn ant-btn-primary"><span>Save</span></button>
+    <button type="button" (click)="updateAllFields(currentTodoId,title, description, this.currentSelectedTime,
+                                                    this.currentEnergy,this.currentDate, this.currentCompleted, this.currentIsFavorite)" class="ant-btn ant-btn-primary"><span>Save</span></button>
   </div>
 </nz-drawer>
 

@@ -102,6 +102,9 @@ export class TodolistComponent implements OnInit {
       value: '0'
     },
   ];
+  currentTodoId;
+  private currentIsFavorite: boolean;
+  private currentCompleted: boolean;
 
 
   constructor(private todoService: TodoService, private ss: SharedService, private router: Router) {
@@ -138,6 +141,21 @@ export class TodolistComponent implements OnInit {
       });
   }
 
+  updateAllFields(id, title, description, time, energy, dueDate, completed, favorite) {
+    console.log(title);
+    console.log(description);
+    console.log(time);
+    console.log(energy);
+    console.log(dueDate);
+    console.log(this.currentActionId);
+
+    this.todoService.updateTodoForAllFields(id, title, description, time, energy, dueDate, this.currentActionId,
+      this.currentCompleted, this.currentIsFavorite).subscribe(item => {
+      console.log(item);
+    });
+  }
+
+
   onDrop(event: CdkDragDrop<string[]>) {
     moveItemInArray(this.todos, event.previousIndex, event.currentIndex);
     console.log(event.container);
@@ -166,13 +184,16 @@ export class TodolistComponent implements OnInit {
   }
 
 
-
   open(todo: Todo): void {
     this.title = todo.title;
     this.description = todo.description;
     this.currentSelectedTime = todo.time;
     this.currentDate = todo.dueDate;
     this.currentEnergy = todo.energy;
+    this.currentTodoId = todo.id;
+    this.currentIsFavorite = todo.favorite;
+    this.currentCompleted = todo.completed;
+    this.currentTodoId = todo.id;
     this.currentSelectedTodo = todo;
 
     console.log(this.currentSelectedTime);
@@ -206,7 +227,6 @@ export class TodolistComponent implements OnInit {
       });
     });
   }
-
 
 
   close(): void {

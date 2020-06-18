@@ -68,6 +68,21 @@ export class TodoService {
     });
   }
 
+  updateTodoForAllFields(id, title, description, time, energy, dueDate, actionId, completed, favorite) {
+    return this.http.put(API_URL + 'todos', {
+      id,
+      title,
+      description,
+      time,
+      energy,
+      dueDate,
+      action_id: actionId,
+      completed,
+      favorite
+    });
+  }
+
+
 
   gettTodoByActionId(id): Observable<Todo[]> {
     return this.http.get<Todo[]>(API_URL + 'todosbyaction/' + id);
