@@ -23,6 +23,7 @@ export class SidebarComponent implements OnInit {
 
   actions: Action[];
   selectedIndex = 0;
+  isCompleteSelected = false;
   isFavoriteSelected = false;
   panels = [
     {
@@ -61,6 +62,13 @@ export class SidebarComponent implements OnInit {
 
   getFavorites() {
     this.isFavoriteSelected = !this.isFavoriteSelected;
+    this.isCompleteSelected = false;
     this.changeName(-1);
+  }
+
+  getCompleted() {
+    this.isCompleteSelected = !this.isCompleteSelected;
+    this.isFavoriteSelected = false;
+    this.changeName(-2);
   }
 }

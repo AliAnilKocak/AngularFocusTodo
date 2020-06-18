@@ -13,7 +13,7 @@
         <!--          <i nz-icon nzType="{{action.icon}}" nzTheme="outline"></i>-->
         <!--          {{action.name}}-->
         <!--        </div>-->
-        <div *ngFor="let action of actions; let i = index" [class.active]="(selectedIndex === i) && !isFavoriteSelected"
+        <div *ngFor="let action of actions; let i = index" [class.active]="(selectedIndex === i) && !isFavoriteSelected && !isCompleteSelected"
              (click)="setIndex(i,action.id)"
              class="nav-item active">
           <i nz-icon nzType="{{action.icon}}" nzTheme="outline"></i>
@@ -27,6 +27,11 @@
          class="nav-item active">
       <i nz-icon nzType="" nzTheme="outline"></i>
       Focus Favorite
+    </div>
+    <div [class.active]="isCompleteSelected" (click)="getCompleted()"
+         class="nav-item active">
+      <i nz-icon nzType="" nzTheme="outline"></i>
+      Focus Completed
     </div>
 
   </div>

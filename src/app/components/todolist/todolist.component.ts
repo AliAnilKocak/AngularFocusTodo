@@ -131,6 +131,11 @@ export class TodolistComponent implements OnInit {
             this.todos = todos;
             console.log(todos);
           });
+        } else if (item === -2) {
+          this.todoService.getCompletedTodos().subscribe(todos => {
+            this.todos = todos;
+            console.log(todos);
+          });
         } else {
           this.todoService.gettTodoByActionId(item).subscribe(todos => {
             this.todos = todos;
