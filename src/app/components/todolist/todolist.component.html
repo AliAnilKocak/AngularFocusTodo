@@ -87,7 +87,7 @@
   <div cdkDropList (cdkDropListDropped)="onDrop($event)">
     <div class="box" *ngFor="let todo of todos; let i = index" cdkDrag>
       <div class="todo-item">
-        <!--        <i class="drag-icon"  nz-icon nzType="more" nzTheme="outline"></i>-->
+                <i class="drag-icon"  nz-icon nzType="more" nzTheme="outline"></i>
         <i class="star-icon"
            (click)="favorite(todo.id, todo.title, todo.description, todo.time, todo.energy, todo.dueDate, todo.completed, todo.favorite,todo.action_id)"
            [class.active]="todo.favorite" nz-icon nzType="star" nzTheme="{{todo.favorite ? 'fill':'outline'}}"></i>

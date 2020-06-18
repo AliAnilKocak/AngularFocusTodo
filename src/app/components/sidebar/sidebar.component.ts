@@ -11,13 +11,12 @@ import {SharedService} from '../../_services/shared.service';
 })
 export class SidebarComponent implements OnInit {
 
-  constructor(private router: Router, private actionService: ActionService, private sharedService: SharedService) {
+  constructor(private router: Router, private actionService: ActionService,
+              private sharedService: SharedService) {
     this.sharedService = sharedService;
     this.actionService.getAllActions().subscribe(actions => {
-      // console.log(actions);
-      console.log('Init triggered');
       this.selectedIndex = 0;
-      this.actions = actions;
+      this.actions = actions;0
     });
   }
 

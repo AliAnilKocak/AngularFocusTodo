@@ -81,7 +81,7 @@
   </form>
   <div class="footer">
     <button type="button" (click)="close()" class="ant-btn" style="margin-right: 8px;"><span>Cancel</span></button>
-    <button type="button" (click)="loglama(title.value, desc.value)" class="ant-btn" style="margin-right: 8px;"><span>Loglama</span>
+    <button type="button"  class="ant-btn" style="margin-right: 8px;"><span>Loglama</span>
     </button>
     <button type="button"
             (click)="createAllFields(title.value, desc.value, this.currentSelectedTime,  this.currentEnergy,this.currentDate)"
@@ -106,6 +106,12 @@
           </li>
         </ul>
       </nz-dropdown-menu>
+<!--      <nz-input-group class="nig" nzSize="small" [nzSuffix]="suffixIconSearch">-->
+<!--        <input type="text" #word nz-input placeholder="input search text" />-->
+<!--      </nz-input-group>-->
+<!--      <ng-template  #suffixIconSearch>-->
+<!--        <i (click)="search(word.value)"  nz-icon nzType="search"></i>-->
+<!--      </ng-template>-->
     </div>
 
     <div class="actions">
