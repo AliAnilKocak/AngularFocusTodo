@@ -5,8 +5,7 @@ import {Action} from '../../model/Action';
 import {TokenStorageService} from '../../_services/token-storage.service';
 import {TodoService} from '../../_services/todo.service';
 import {en_US, NzI18nService, zh_CN} from 'ng-zorro-antd';
-import {Todo} from '../../model/Todo';
-import {DatePipe, formatDate} from '@angular/common';
+import {formatDate} from '@angular/common';
 
 @Component({
   selector: 'app-top-nav',
@@ -20,7 +19,6 @@ export class TopNavComponent implements OnInit {
   drawerPlacement = 'left';
   currentActionId;
   currentDate = null;
-  currentTodo: Todo;
   currentSelectedTime = 0;
   currentEnergy = 'None';
   isEnglish = false;
@@ -127,7 +125,6 @@ export class TopNavComponent implements OnInit {
     });
   }
 
-
   timeChange(value: string): void {
     this.currentSelectedTime = Number(value);
     console.log(this.currentSelectedTime);
@@ -136,14 +133,6 @@ export class TopNavComponent implements OnInit {
   EnergyChange(value: string): void {
     this.currentEnergy = value;
     console.log(this.currentEnergy);
-  }
-
-  onChange(result: Date): void {
-    console.log('onChange: ', result);
-  }
-
-  change(value: boolean): void {
-    console.log(value);
   }
 
   onChangeDate(result: Date): void {
@@ -175,16 +164,4 @@ export class TopNavComponent implements OnInit {
     this.router.navigate(['/login']);
   }
 
-  save(name, description) {
-    this.todoService.saveTodo(name, description, this.currentActionId).subscribe(item => {
-    });
-    this.visible = false;
-  }
-
-
-  loglama(title: string, desc: string) {
-    console.log(title);
-    console.log(' ');
-    console.log(desc);
-  }
 }

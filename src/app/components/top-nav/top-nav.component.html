@@ -81,8 +81,11 @@
   </form>
   <div class="footer">
     <button type="button" (click)="close()" class="ant-btn" style="margin-right: 8px;"><span>Cancel</span></button>
-    <button type="button" (click)="loglama(title.value, desc.value)" class="ant-btn" style="margin-right: 8px;"><span>Loglama</span></button>
-    <button type="button" (click)="createAllFields(title.value, desc.value, this.currentSelectedTime,  this.currentEnergy,this.currentDate)" class="ant-btn ant-btn-primary"><span>Save</span>
+    <button type="button" (click)="loglama(title.value, desc.value)" class="ant-btn" style="margin-right: 8px;"><span>Loglama</span>
+    </button>
+    <button type="button"
+            (click)="createAllFields(title.value, desc.value, this.currentSelectedTime,  this.currentEnergy,this.currentDate)"
+            class="ant-btn ant-btn-primary"><span>Save</span>
     </button>
   </div>
 </nz-drawer>

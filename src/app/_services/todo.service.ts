@@ -83,7 +83,6 @@ export class TodoService {
   }
 
 
-
   gettTodoByActionId(id): Observable<Todo[]> {
     return this.http.get<Todo[]>(API_URL + 'todosbyaction/' + id);
   }

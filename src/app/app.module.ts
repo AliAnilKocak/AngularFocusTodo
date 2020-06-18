@@ -16,12 +16,13 @@ import {NzButtonModule} from 'ng-zorro-antd/button';
 import {TodolistComponent} from './components/todolist/todolist.component';
 import {LoginComponent} from './auth/login/login.component';
 import {RegisterComponent} from './auth/register/register.component';
-import { DashboardComponent } from './components/home/dashboard.component';
-import { ProfileComponent } from './components/profile/profile.component';
-import { BoardAdminComponent } from './components/board-admin/board-admin.component';
-import { BoardModeratorComponent } from './components/board-moderator/board-moderator.component';
-import { BoardUserComponent } from './components/board-user/board-user.component';
-import { authInterceptorProviders } from './_helpers/auth.interceptor';
+import {DashboardComponent} from './components/home/dashboard.component';
+import {ProfileComponent} from './components/profile/profile.component';
+import {BoardAdminComponent} from './components/board-admin/board-admin.component';
+import {BoardModeratorComponent} from './components/board-moderator/board-moderator.component';
+import {BoardUserComponent} from './components/board-user/board-user.component';
+import {authInterceptorProviders} from './_helpers/auth.interceptor';
+
 registerLocaleData(en);
 
 @NgModule({

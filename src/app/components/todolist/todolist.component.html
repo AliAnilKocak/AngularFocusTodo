@@ -12,7 +12,7 @@
         <nz-form-item>
           <nz-form-label>Name</nz-form-label>
           <nz-form-control>
-            <input name="title" [(ngModel)]="title" nz-input placeholder="please enter user name" />
+            <input name="title" [(ngModel)]="title" nz-input placeholder="please enter user name"/>
           </nz-form-control>
         </nz-form-item>
       </div>
@@ -78,24 +78,23 @@
   <div class="footer">
     <button type="button" (click)="close()" class="ant-btn" style="margin-right: 8px;"><span>Cancel</span></button>
     <button type="button" (click)="updateAllFields(currentTodoId,title, description, this.currentSelectedTime,
-                                                    this.currentEnergy,this.currentDate, this.currentCompleted, this.currentIsFavorite)" class="ant-btn ant-btn-primary"><span>Save</span></button>
+                                                    this.currentEnergy,this.currentDate, this.currentCompleted, this.currentIsFavorite)"
+            class="ant-btn ant-btn-primary"><span>Save</span></button>
   </div>
 </nz-drawer>
 
 <div class="content">
-<!--  <div>-->
-<!--    {{onMain}}-->
-<!--    <br> __________________________________<br>-->
-<!--  </div>-->
   <div cdkDropList (cdkDropListDropped)="onDrop($event)">
     <div class="box" *ngFor="let todo of todos; let i = index" cdkDrag>
-      <div class="todo-item"   >
-<!--        <i class="drag-icon"  nz-icon nzType="more" nzTheme="outline"></i>-->
-        <i class="star-icon" (click)="favoriteSaveTodo(todo.title, todo.description, todo.id, todo.favorite,todo.completed)"
-           [class.active]="todo.favorite"  nz-icon nzType="star" nzTheme="{{todo.favorite ? 'fill':'outline'}}"></i>
-        <label (ngModelChange)="toggleSaveTodo(todo.title, todo.description, todo.id, todo.completed, todo.favorite)"
-               nz-checkbox [(ngModel)]="todo.completed"></label>
-        <div (click)="open(todo)" class="todo-title" >{{todo.title}}</div>
+      <div class="todo-item">
+        <!--        <i class="drag-icon"  nz-icon nzType="more" nzTheme="outline"></i>-->
+        <i class="star-icon"
+           (click)="favorite(todo.id, todo.title, todo.description, todo.time, todo.energy, todo.dueDate, todo.completed, todo.favorite,todo.action_id)"
+           [class.active]="todo.favorite" nz-icon nzType="star" nzTheme="{{todo.favorite ? 'fill':'outline'}}"></i>
+        <label
+          (ngModelChange)="toggle(todo.id, todo.title, todo.description, todo.time, todo.energy, todo.dueDate, todo.completed, todo.favorite,todo.action_id)"
+          nz-checkbox [(ngModel)]="todo.completed"></label>
+        <div (click)="open(todo)" class="todo-title">{{todo.title}}</div>
       </div>
       <div class="divider"></div>
     </div>

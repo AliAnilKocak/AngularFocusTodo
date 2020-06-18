@@ -1,7 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {Todo} from '../model/Todo';
 import {Action} from '../model/Action';
 
 const API_URL = 'http://localhost:9191/';

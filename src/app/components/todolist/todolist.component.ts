@@ -155,6 +155,24 @@ export class TodolistComponent implements OnInit {
     });
   }
 
+  toggle(id, title, description, time, energy, dueDate, completed, favorite, actionID) {
+    this.todoService.updateTodoForAllFields(id, title, description, time, energy, dueDate, actionID,
+      !completed, favorite).subscribe(item => {
+      this.todoService.gettTodoByActionId(this.currentActionId).subscribe(todos => {
+        this.todos = todos;
+      });
+    });
+  }
+
+  favorite(id, title, description, time, energy, dueDate, completed, favorite, actionID) {
+    this.todoService.updateTodoForAllFields(id, title, description, time, energy, dueDate, actionID,
+      completed, !favorite).subscribe(item => {
+      this.todoService.gettTodoByActionId(this.currentActionId).subscribe(todos => {
+        this.todos = todos;
+      });
+    });
+  }
+
 
   onDrop(event: CdkDragDrop<string[]>) {
     moveItemInArray(this.todos, event.previousIndex, event.currentIndex);
@@ -210,22 +228,6 @@ export class TodolistComponent implements OnInit {
       });
     });
     this.visible = false;
-  }
-
-  toggleSaveTodo(name, description, id, isCompleted: boolean, isFavorite: boolean) {
-    console.log(id);
-    this.todoService.updateTodoToggle(name, description, id, !isCompleted, isFavorite).subscribe(item => {
-    });
-  }
-
-  favoriteSaveTodo(name, description, id, isFavorite: boolean, isCompleted: boolean) {
-    console.log(isCompleted);
-    this.todoService.favoriteTodoUpdate(name, description, id, !isFavorite, isCompleted).subscribe(item => {
-      console.log(item);
-      this.todoService.gettTodoByActionId(this.currentActionId).subscribe(todos => {
-        this.todos = todos;
-      });
-    });
   }
 
 

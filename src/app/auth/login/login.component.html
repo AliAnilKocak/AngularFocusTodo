@@ -1,8 +1,8 @@
 <div class="login-container">
-  <form  class="login-form" (ngSubmit)="onSubmit()"
+  <form class="login-form" (ngSubmit)="onSubmit()"
         #f="ngForm"
         name="form"
-         novalidate
+        novalidate
   >
     <nz-form-item>
       <nz-form-control nzErrorTip="Please input your username!">
@@ -14,7 +14,7 @@
             [(ngModel)]="form.username"
             required
             #username="ngModel"
-            nz-input  placeholder="Username"/>
+            nz-input placeholder="Username"/>
         </nz-input-group>
       </nz-form-control>
     </nz-form-item>
@@ -29,13 +29,13 @@
             required
             minlength="6"
             #password="ngModel"
-            nz-input  placeholder="Password"/>
+            nz-input placeholder="Password"/>
         </nz-input-group>
       </nz-form-control>
     </nz-form-item>
     <div nz-row class="login-form-margin">
       <div nz-col [nzSpan]="12">
-        <label nz-checkbox >
+        <label nz-checkbox>
           <span>Remember me</span>
         </label>
       </div>

@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {Router} from '@angular/router';
 import {TokenStorageService} from './_services/token-storage.service';
 
 
@@ -23,11 +22,11 @@ export class AppComponent implements OnInit {
       this.username = user.username;
     }
   }
+
   logout() {
     this.tokenStorageService.signOut();
     window.location.reload();
   }
-
 
 
 }
